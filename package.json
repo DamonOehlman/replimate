@@ -13,9 +13,6 @@
   "dependencies": {
       "request": "2.2.x"
   },
-  "devDependencies": {
-      "config": ">= 0.4.5"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/steelmesh/replimate.git"
