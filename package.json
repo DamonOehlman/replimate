@@ -13,6 +13,10 @@
   "dependencies": {
       "request": "2.2.x"
   },
+  "devDependencies": {
+      "nano": ">= 0.9.5",
+      "async": ">= 0.1.15"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/steelmesh/replimate.git"
