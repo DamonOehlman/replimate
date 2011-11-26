@@ -14,7 +14,7 @@
       "request": "2.2.x"
   },
   "devDependencies": {
-      "vows": "0.5.x"
+      "config": ">= 0.4.5"
   },
   "repository": {
     "type": "git",
