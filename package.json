@@ -1,0 +1,27 @@
+{
+  "name": "replimate",
+  "description": "CouchDB 1.1.0 (using _replicator db) replication helpers",
+  "tags": [
+    "couchdb",
+    "replication"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">= 0.4.x < 0.7.0"
+  },
+  "dependencies": {
+      "request": "2.2.x"
+  },
+  "devDependencies": {
+      "vows": "0.5.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/steelmesh/replimate.git"
+  },
+  "bugs": {
+    "url": "http://github.com/steelmesh/replimate/issues"
+  },
+  "contributors": []
+}
