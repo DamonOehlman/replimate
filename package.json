@@ -6,7 +6,7 @@
     "replication"
   ],
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
   },
