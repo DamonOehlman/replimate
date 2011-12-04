@@ -37,4 +37,21 @@ describe('replication', function() {
             done(err);
         });
     });
+    
+    it('should be able to create continuos replication jobs', function(done) {
+        var opts = {
+            action: 'replicate',
+            source: 'test',
+            target: 'test2',
+            continuous: true
+        };
+        
+        replimate(config.couchurl, opts, function(err, monitor) {
+            assert.equal(typeof monitor, 'object');
+            
+            monitor.checkStatus(function(statusErr, data) {
+                done(statusErr);
+            });
+        });
+    });
 });
