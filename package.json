@@ -6,7 +6,7 @@
     "replication"
   ],
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
   },
@@ -21,10 +21,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/steelmesh/replimate.git"
+    "url": "git://github.com/DamonOehlman/replimate.git"
   },
   "bugs": {
-    "url": "http://github.com/steelmesh/replimate/issues"
+    "url": "http://github.com/DamonOehlman/replimate/issues"
   },
   "contributors": []
 }
