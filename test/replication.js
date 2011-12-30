@@ -35,7 +35,6 @@ describe('replication', function() {
     it('should be able to check the status of the replication', function(done) {
         _monitor.checkStatus(function(err, data) {
             assert(data, 'Status check returned data');
-            assert.equal(data.action, 'replicate', 'We are replicating');
             assert.equal(data.source, 'test', 'Source db is test');
             assert.equal(data.target, 'test2', 'Target db is test2');
             done(err);

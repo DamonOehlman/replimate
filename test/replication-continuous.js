@@ -36,7 +36,6 @@ describe('replication (continuous)', function() {
     it('should be able to check the status of a continuous replication job', function(done) {
         _monitor.checkStatus(function(err, data) {
             assert(data);
-            assert.equal(data.action, 'replicate');
             assert.equal(data.continuous, true);
             
             done(err);
@@ -62,7 +61,6 @@ describe('replication (continuous)', function() {
     
     it('should have no status for the job', function(done) {
         _monitor.checkStatus(function(err, data) {
-            console.log(err, data);
             assert(err);
             assert.equal(err.reason, 'deleted');
             done();

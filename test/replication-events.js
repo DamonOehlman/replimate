@@ -13,7 +13,7 @@ describe('replication events', function() {
     });
     
     
-    it('non-continuous replication should trigger a done event', function(done) {
+    it('non-continuous replication should trigger a completed event', function(done) {
         var opts = {
             action: 'replicate',
             source: 'test',

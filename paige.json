@@ -1,0 +1,12 @@
+{
+    "title" :             "Replimate",
+    "content_file" :      "README.md",
+    "include_index" :     false,
+    "docco_files" :       [
+        "lib/*.js",
+        "examples/*.js"
+    ],
+    "header" :            "Replimate",
+    "subheader" :         "CouchDB Replication Helpers for the _replicator db",
+    "background" :        "bright-squares"
+}

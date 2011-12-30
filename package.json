@@ -26,5 +26,8 @@
   "bugs": {
     "url": "http://github.com/DamonOehlman/replimate/issues"
   },
+  
+  "scripts": { "test": "mocha --reporter spec -t 10000" },
+  
   "contributors": []
 }
