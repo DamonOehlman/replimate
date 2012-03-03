@@ -2,7 +2,7 @@
 
 Replimate provides some helpers for working with the CouchDB 1.1 (and above) `_replicator` database.  Using the `_replicator` database provides some benefits over the traditional replication methods including replication persistence across CouchDB server restarts.
 
-<a href="http://travis-ci.org/#!/steelmesh/replimate"><img src="https://secure.travis-ci.org/steelmesh/replimate.png" alt="Build Status"></a>
+<a href="http://travis-ci.org/#!/DamonOehlman/replimate"><img src="https://secure.travis-ci.org/DamonOehlman/replimate.png" alt="Build Status"></a>
 
 ## Example Usage
 
