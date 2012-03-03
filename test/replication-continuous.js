@@ -5,6 +5,17 @@ var async = require('async'),
     assert = require('assert'),
     _monitor;
     
+function replicate(callback) {
+    var opts = {
+        action: 'replicate',
+        source: 'test',
+        target: 'test2',
+        continuous: true
+    };
+    
+    replimate(config.couchurl, opts, callback);
+}
+    
 describe('replication (continuous)', function() {
     var _monitor;
     
@@ -17,14 +28,7 @@ describe('replication (continuous)', function() {
     
     
     it('should be able to create continuous replication jobs', function(done) {
-        var opts = {
-            action: 'replicate',
-            source: 'test',
-            target: 'test2',
-            continuous: true
-        };
-        
-        replimate(config.couchurl, opts, function(err, monitor) {
+        replicate(function(err, monitor) {
             assert.equal(typeof monitor, 'object');
             
             // save a reference to the monitor
@@ -42,8 +46,24 @@ describe('replication (continuous)', function() {
         });
     });
     
+    it('should be able to cancel the replication', function(done) {
+        _monitor.cancel(done);
+    });
+    
+    it('should have no status for the job', function(done) {
+        _monitor.checkStatus(function(err, data) {
+            assert(err);
+            assert.equal(err.reason, 'deleted');
+            done();
+        });
+    });
+    
     it('should be able to receive a triggered event', function(done) {
-        _monitor.on('triggered', done);
+        _monitor.on('triggered', function() {
+            done();
+        });
+        
+        replicate();
     });
     
     it('should have the replication status of triggered', function(done) {
@@ -57,13 +77,5 @@ describe('replication (continuous)', function() {
     
     it('should be able to cancel the replication', function(done) {
         _monitor.cancel(done);
-    });
-    
-    it('should have no status for the job', function(done) {
-        _monitor.checkStatus(function(err, data) {
-            assert(err);
-            assert.equal(err.reason, 'deleted');
-            done();
-        });
     });
 });

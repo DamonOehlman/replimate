@@ -13,7 +13,7 @@
   "dependencies": {
       "async": "0.1.x",
       "debug": "*",
-      "request": "2.2.x"
+      "request": "2.9.x"
   },
   "devDependencies": {
       "nano": ">= 0.9.5",
