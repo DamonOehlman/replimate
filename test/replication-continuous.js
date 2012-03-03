@@ -59,7 +59,7 @@ describe('replication (continuous)', function() {
     });
     
     it('should be able to receive a triggered event', function(done) {
-        _monitor.on('triggered', function() {
+        _monitor.once('triggered', function() {
             done();
         });
         

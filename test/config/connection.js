@@ -3,6 +3,6 @@ try {
 }
 catch (e) {
     module.exports = {
-        couchurl: 'http://localhost:5984/'
+        couchurl: 'http://admin:notaparty@replimate.iriscouch.com/'
     };
 }

@@ -24,7 +24,7 @@ describe('replication events', function() {
             assert.equal(typeof monitor, 'object');
             
             // watch for a done event
-            monitor.on('completed', function() {
+            monitor.once('completed', function() {
                 done();
             });
         });
