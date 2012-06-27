@@ -6,19 +6,19 @@
     "replication"
   ],
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "engines": {
     "node": ">= 0.4.x < 0.9.0"
   },
   "dependencies": {
-      "async": "0.1.x",
-      "debug": "*",
-      "request": "2.9.x"
+    "async": "0.1.x",
+    "debug": "*",
+    "request": "2.9.x"
   },
   "devDependencies": {
-      "mocha": "1.2.x",
-      "nano": "3.0.x",
-      "async": "0.1.x"
+    "mocha": "1.2.x",
+    "nano": "3.0.x",
+    "async": "0.1.x"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,8 @@
   "bugs": {
     "url": "http://github.com/DamonOehlman/replimate/issues"
   },
-  
-  "scripts": { "test": "mocha --reporter spec -t 10000" },
-  
+  "scripts": {
+    "test": "mocha --reporter spec -t 10000"
+  },
   "contributors": []
 }
