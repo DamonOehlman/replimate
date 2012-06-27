@@ -8,7 +8,7 @@
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
   "version": "0.2.1",
   "engines": {
-    "node": ">= 0.4.x < 0.7.0"
+    "node": ">= 0.4.x < 0.9.0"
   },
   "dependencies": {
       "async": "0.1.x",
@@ -16,9 +16,9 @@
       "request": "2.9.x"
   },
   "devDependencies": {
-      "mocha": "*",
-      "nano": ">= 0.9.5",
-      "async": ">= 0.1.15"
+      "mocha": "1.2.x",
+      "nano": "3.0.x",
+      "async": "0.1.x"
   },
   "repository": {
     "type": "git",
