@@ -23,3 +23,5 @@ Running this example should run output similar to the following::
         _replication_state: 'triggered',
         _replication_state_time: '2012-07-20T03:32:43+00:00',
         _replication_id: '922742a54303e0c8aa96b09f93bf55ca' } ]
+
+This data is provided directly from the CouchDB `_replicator` db entry, and will contain both current and completed replication jobs.

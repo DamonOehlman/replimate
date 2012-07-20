@@ -9,6 +9,7 @@ Contents:
    :maxdepth: 2
    
    checking-status
+   starting-replication
 
 
 
