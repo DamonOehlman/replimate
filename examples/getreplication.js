@@ -1,5 +1,7 @@
-var replimate = require('../');
+var replimate = require('../'),
+    util = require('util'),
+    targetUrl = 'http://admin:notaparty@replimate.iriscouch.com/';
 
-replimate('http://replimate.iriscouch.com/', function(err, docs) {
-    console.log(docs);
+replimate(targetUrl, function(err, docs) {
+    console.log(util.inspect(docs, false, 3));
 });

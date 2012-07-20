@@ -1,0 +1,4 @@
+.. _Steelmesh: https://github.com/steelmesh/steelmesh
+.. _Node.js: http://nodejs.org
+.. _CouchDB: http://couchdb.apache.org/
+.. _Replicator: http://wiki.apache.org/couchdb/Replication#Replicator_database
