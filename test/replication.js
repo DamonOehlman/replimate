@@ -10,7 +10,8 @@ describe('replication', function() {
     before(function(done) {
         async.series([
             async.apply(require('./helpers/create-testdb').run, couch),
-            async.apply(require('./helpers/populate-testdb').run, couch)
+            async.apply(require('./helpers/populate-testdb').run, couch),
+            async.apply(require('./helpers/reset-test2db').run, couch)
         ], done);
     });
     
@@ -41,7 +42,7 @@ describe('replication', function() {
         });
     });
     
-    it('should be able to create continuos replication jobs', function(done) {
+    it('should be able to create continuous replication jobs', function(done) {
         var opts = {
             action: 'replicate',
             source: 'test',
