@@ -1,7 +1,7 @@
 {
   "name": "replimate",
   "description": "CouchDB (using _replicator db) replication helpers",
-  "tags": [
+  "keywords": [
     "couchdb",
     "replication"
   ],
@@ -27,5 +27,12 @@
   "scripts": {
     "test": "$(npm bin)/mocha --reporter spec -t 60s",
     "gendocs": "gendocs > README.md"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "license": "MIT"
 }
