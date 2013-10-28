@@ -10,10 +10,10 @@
   "dependencies": {
     "async": "0.2.x",
     "debug": "*",
-    "request": "2.21.x"
+    "request": "~2.27.0"
   },
   "devDependencies": {
-    "mocha": "1.12.x",
+    "mocha": "~1.13.0",
     "nano": "4.1.x"
   },
   "repository": {
