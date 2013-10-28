@@ -25,6 +25,7 @@
     "url": "http://github.com/DamonOehlman/replimate/issues"
   },
   "scripts": {
-    "test": "$(npm bin)/mocha --reporter spec -t 60s"
+    "test": "$(npm bin)/mocha --reporter spec -t 60s",
+    "gendocs": "gendocs > README.md"
   }
 }
