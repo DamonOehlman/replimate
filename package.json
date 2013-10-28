@@ -14,7 +14,8 @@
   },
   "devDependencies": {
     "mocha": "~1.13.0",
-    "nano": "4.1.x"
+    "nano": "4.1.x",
+    "out": "~0.5.1"
   },
   "repository": {
     "type": "git",

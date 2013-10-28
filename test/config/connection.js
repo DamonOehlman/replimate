@@ -1,8 +1,1 @@
-try {
-    module.exports = require('./override');
-}
-catch (e) {
-    module.exports = {
-        couchurl: 'http://admin:notaparty@replimate.iriscouch.com/'
-    };
-}
+exports.couchurl = process.env.COUCHDB_URL || 'http://replimate.iriscouch.com';
