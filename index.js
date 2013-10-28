@@ -43,6 +43,19 @@ var reTrailingSlash = /\/(_replicator)?$/;
 
   <<< examples/clear-completed.js
 
+  ## Reference
+
+**/
+
+/**
+  ### replimate(targetUrl, opts?, callback)
+
+  Start the replimate process.  The `targetUrl` specifies the target couch
+  server endpoint (including basic auth admin credentials if required).
+
+  If no `opts` are specified, then replimate will simply return information on
+  the entries within the `_replicator` database on that server.
+
 **/
 module.exports = function(targetUrl, opts, callback) {
   var action;

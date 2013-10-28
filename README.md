@@ -5,6 +5,11 @@ Replimate provides some helpers for working with the CouchDB 1.1
 provides some benefits over the traditional replication methods
 including replication persistence across CouchDB server restarts.
 
+
+[![NPM](https://nodei.co/npm/replimate.png)](https://nodei.co/npm/replimate/)
+
+[![Build Status](https://travis-ci.org/DamonOehlman/replimate.png?branch=master)](https://travis-ci.org/DamonOehlman/replimate)
+
 ## Example Usage
 
 Working with replimate is designed to be really easy, and here are
@@ -81,6 +86,16 @@ replimate(targetUrl, { action: 'clear-completed' }, function(err) {
   out('_replicator database now a little cleaner...');
 });
 ```
+
+## Reference
+
+### replimate(targetUrl, opts?, callback)
+
+Start the replimate process.  The `targetUrl` specifies the target couch
+server endpoint (including basic auth admin credentials if required).
+
+If no `opts` are specified, then replimate will simply return information on
+the entries within the `_replicator` database on that server.
 
 ### Monitor
 
