@@ -1,10 +1,10 @@
 var replimate = require('../');
+var targetUrl = process.env.COUCHDB_URL || 'http://localhost:5984';
 var opts = {
   action: 'replicate',
   source: 'http://sidelab.iriscouch.com/seattle_neighbourhood',
   target: 'seattle_neighbourhood'
 };
-var targetUrl = process.env.COUCHDB_URL || 'http://replimate.iriscouch.com';
 
 // create a replication rule to run from the test seattle_neighbourhood db
 // to a local copy on the replimate instance

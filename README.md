@@ -19,7 +19,7 @@ a few examples:
 
 ```js
 var replimate = require('replimate');
-var dbUrl = process.env.COUCHDB_URL || 'http://replimate.iriscouch.com';
+var targetUrl = process.env.COUCHDB_URL || 'http://localhost:5984';
 var out = require('out');
 
 replimate(dbUrl, function(err, docs) {
@@ -38,12 +38,12 @@ Creating a new replcication job is pretty easy also:
 
 ```js
 var replimate = require('replimate');
+var targetUrl = process.env.COUCHDB_URL || 'http://localhost:5984';
 var opts = {
   action: 'replicate',
   source: 'http://sidelab.iriscouch.com/seattle_neighbourhood',
   target: 'seattle_neighbourhood'
 };
-var targetUrl = process.env.COUCHDB_URL || 'http://replimate.iriscouch.com';
 
 // create a replication rule to run from the test seattle_neighbourhood db
 // to a local copy on the replimate instance
@@ -75,7 +75,7 @@ required:
 
 ```js
 var replimate = require('replimate');
-var targetUrl = process.env.COUCHDB_URL || 'http://replimate.iriscouch.com';
+var targetUrl = process.env.COUCHDB_URL || 'http://localhost:5984';
 var out = require('out');
 
 replimate(targetUrl, { action: 'clear-completed' }, function(err) {
@@ -111,6 +111,18 @@ Cancel a replication task
 #### checkStatus(callback)
 
 Request the status of the replication task.
+
+#### _checkState(stateName)
+
+This is a simple helper function that will check the current state
+of the specified state name, and if already flagged trigger an event
+immediately when a new event listener is coupled to the replication
+monitor
+
+#### _monitorState(targetState, interval = 1000)
+
+Monitor the state of the replication job, and update data against
+the monitor as it changes.
 
 ### Replimate Core Actions
 

@@ -1,5 +1,5 @@
 var replimate = require('..');
-var dbUrl = process.env.COUCHDB_URL || 'http://replimate.iriscouch.com';
+var targetUrl = process.env.COUCHDB_URL || 'http://localhost:5984';
 var out = require('out');
 
 replimate(dbUrl, function(err, docs) {
