@@ -7,6 +7,10 @@ var reDesign = /^\_design/i;
 var reUrlStrip = /(https?\:\/\/|\:\d*)/ig;
 var Monitor = require('../monitor');
 
+var remappedNames = {
+  docids: 'doc_ids'
+};
+
 /**
   ### Replimate Core Actions
 
@@ -70,7 +74,7 @@ var replicate = exports.replicate = function(targetUrl, opts, callback) {
   // replicate the options into the doc
   Object.keys(opts).forEach(function(key) {
     if (opts.hasOwnProperty(key) && (ignoreKeys.indexOf(key) < 0)) {
-      doc[key] = opts[key];
+      doc[remappedNames[key] || key] = opts[key];
     }
   });
 
