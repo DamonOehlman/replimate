@@ -1,3 +1,3 @@
-exports.run = function(couch, callback) {
-    couch.use('test').insert({ test: true }, callback);
+module.exports = function(couch, callback) {
+  couch.use('test').insert({ test: true }, callback);
 };
