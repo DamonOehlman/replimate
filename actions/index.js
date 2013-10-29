@@ -46,7 +46,7 @@ exports.info = function(targetUrl, opts, callback) {
   server's `_replicator` database.  For information on how the CouchDB _replicator
   database operates, see the [CouchDB wiki](http://wiki.apache.org/couchdb/Replication#Replicator_database)
 **/
-exports.replicate = function(targetUrl, opts, callback) {
+var replicate = exports.replicate = function(targetUrl, opts, callback) {
   var ignoreKeys = ['action'];
   var doc = {};
 
@@ -61,12 +61,24 @@ exports.replicate = function(targetUrl, opts, callback) {
     }
   }
 
+  // if we have been provided a filter function, then we need to do a
+  // bit of legwork to make the filter available
+  if (typeof opts.filter == 'function') {
+    return callback(new Error('filter function must be a named filter on the source'));
+  }
+
   // replicate the options into the doc
   Object.keys(opts).forEach(function(key) {
     if (opts.hasOwnProperty(key) && (ignoreKeys.indexOf(key) < 0)) {
       doc[key] = opts[key];
     }
   });
+
+  // if we have a filter, then convert to text
+  if (typeof doc.filter == 'function') {
+    doc.filter = doc.filter.toString();
+    console.log(doc);
+  }
 
   // if create target is undefined, then default to true
   if (typeof doc.create_target == 'undefined') {

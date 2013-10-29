@@ -2,6 +2,7 @@ var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 var relax = require('./relax');
 var debug = require('debug')('replimate-monitor');
+var stateOrder = ['triggered', 'completed'];
 
 /**
   ### Monitor
@@ -111,16 +112,27 @@ Monitor.prototype._checkState = function(name) {
 **/
 Monitor.prototype._monitorState = function(targetState, interval) {
   var mon = this;
+  var targetStateIdx;
+
+  // ensure target state is lower case
+  targetState = (targetState || '').toLowerCase();
+
+  // get the target state index
+  targetStateIdx = stateOrder.indexOf(targetState);
 
   function next() {
     debug('checking status, looking for state: ' + targetState);
     mon.checkStatus(function(err, data) {
+      var currentStateIdx;
+
       // if we hit an error, then report and abort
       if (err) {
         return debug('captured error: ', err);
       }
 
-      debug('current state: ' + data._replication_state);
+      // get the current state index
+      currentStateIdx = stateOrder.indexOf(data._replication_state);
+      debug('current state: ' + data._replication_state + ', idx: ' + currentStateIdx);
 
       // if the replication state, matches the target state then finish
       if (data && data._replication_state === targetState) {
@@ -130,6 +142,12 @@ Monitor.prototype._monitorState = function(targetState, interval) {
 
         // trigger the event
         return mon.emit(targetState, data);
+      }
+
+      // if we have already passed the specified state, then abort
+      if (currentStateIdx >= targetStateIdx) {
+        debug('passed the target state of: ' + targetState);
+        return;
       }
 
       // if the target state is completed, and it is a continuous job abort

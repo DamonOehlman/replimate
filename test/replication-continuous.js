@@ -21,6 +21,8 @@ describe('replication (continuous)', function() {
 
   before(function(done) {
     async.series([
+      async.apply(require('./helpers/resetdb')('test'), couch),
+      async.apply(require('./helpers/resetdb')('test2'), couch),
       async.apply(require('./helpers/create-testdb'), couch),
       async.apply(require('./helpers/populate-testdb'), couch)
     ], done);

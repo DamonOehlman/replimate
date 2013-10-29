@@ -10,7 +10,8 @@
   "dependencies": {
     "async": "0.2.x",
     "debug": "*",
-    "request": "~2.27.0"
+    "request": "~2.27.0",
+    "cog": "~0.3.1"
   },
   "devDependencies": {
     "mocha": "~1.13.0",
