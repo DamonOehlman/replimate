@@ -20,9 +20,17 @@ function Monitor(targetUrl, docData, opts) {
 
   this.docUrl = targetUrl + '/' + (docData.id || docData._id);
 
-  // watch for a done event being assigned
-  this.on('newListener', _watchForState(this, 'completed'));
-  this.on('newListener', _watchForState(this, 'triggered'));
+  // flag completed and triggered as false
+  this.completed = false;
+  this.triggered = false;
+
+  // monitor the completed and triggered state
+  this._monitorState('completed');
+  this._monitorState('triggered');
+
+ // watch for a done event being assigned
+  this.on('newListener', this._checkState('completed'));
+  this.on('newListener', this._checkState('triggered'));
 };
 
 // inherit from the node event emitter class
@@ -57,34 +65,69 @@ Monitor.prototype.checkStatus = function(callback) {
   relax(this.docUrl, callback);
 };
 
-// ### _watchForState
-// This function is used to regularly run the `checkStatus` method of a monitor
-// to look for a particular `_replication_state` result from the database.  Once
-// the required status has been detected, the event it triggered
-function _watchForState(monitor, state, interval) {
-  var monitorTimer;
+/**
+  #### _checkState(stateName)
 
-  function checkState() {
-    monitor.checkStatus(function(err, data) {
-      // if we captured an error, trigger an error event
-      if (err) {
-        debug('Received error checking status: ', err);
-        monitor.emit('error', new Error('Error checking status while waiting for replication completion'));
-      }
-      else if (data && data._replication_state === state) {
-        monitor.emit(state, data);
-      }
+  This is a simple helper function that will check the current state
+  of the specified state name, and if already flagged trigger an event
+  immediately when a new event listener is coupled to the replication
+  monitor
+**/
+Monitor.prototype._checkState = function(name) {
+  var mon = this;
 
-      clearInterval(monitorTimer);
-    });
-  }
+  return function() {
+    debug('new listener for ' + name + ' state monitoring connected');
 
-  return function(evtName) {
-    if (evtName === state) {
-      if (! monitorTimer) {
-        debug(evtName + ' event listener detected, watching for replication completion');
-        monitorTimer = setInterval(checkState, interval || 1000);
-      }
+    // if the state has been triggered, emit the event
+    if (mon[name]) {
+      mon.emit(name, mon[name]);
     }
   };
 }
+
+/**
+  #### _monitorState(targetState, interval = 1000)
+
+  Monitor the state of the replication job, and update data against
+  the monitor as it changes.
+**/
+Monitor.prototype._monitorState = function(targetState, interval) {
+  var mon = this;
+
+  function next() {
+    debug('checking status, looking for state: ' + targetState);
+    mon.checkStatus(function(err, data) {
+      // if we hit an error, then report and abort
+      if (err) {
+        debug('captured error: ', err);
+
+        return;
+      }
+
+      debug('current state: ' + data._replication_state);
+
+      // if the replication state, matches the target state then finish
+      if (data && data._replication_state === targetState) {
+        debug('target state found, triggering "' + targetState + '" event');
+        // update the data
+        mon[targetState] = data;
+
+        // trigger the event
+        return mon.emit(targetState, data);
+      }
+
+      // if the target state is completed, and it is a continuous job abort
+      if (data && data.continuous && targetState === 'completed') {
+        debug('aborting completed check for continuous replication job')
+        return;
+      }
+
+      // no change, check again soon...
+      setTimeout(next, interval || 1000);
+    });
+  }
+
+  // check the status
+  next();
+};
