@@ -43,17 +43,34 @@ module.exports = Monitor;
   Cancel a replication task
 **/
 Monitor.prototype.cancel = function(callback) {
-  var targetUrl = this.docUrl;
+  var mon = this;
+  var counter = 0;
 
-  // get the data for the document
-  relax(targetUrl, function(err, data) {
-    if (err) {
-      return callback(err);
-    }
+  function cancel() {
+    relax(mon.docUrl, function(infoErr, data) {
+      if (infoErr) {
+        return callback(infoErr);
+      }
 
-    // delete the item
-    relax(targetUrl + '?rev=' + data._rev, 'DELETE', callback);
-  });
+      debug('attempting to cancel job, revision: ' + data._rev);
+      relax(
+        mon.docUrl + '?rev=' + data._rev,
+        'DELETE',
+        function(delErr, delData) {
+          // if we hit an error, and it was a conflict, then try again
+          if (delErr && delErr.error === 'conflict') {
+            counter += 1;
+            return setTimeout(cancel, 50);
+          }
+
+
+          return callback(delErr, delData);
+        }
+      );
+    });
+  }
+
+  cancel();
 };
 
 /**
@@ -100,9 +117,7 @@ Monitor.prototype._monitorState = function(targetState, interval) {
     mon.checkStatus(function(err, data) {
       // if we hit an error, then report and abort
       if (err) {
-        debug('captured error: ', err);
-
-        return;
+        return debug('captured error: ', err);
       }
 
       debug('current state: ' + data._replication_state);
@@ -124,7 +139,7 @@ Monitor.prototype._monitorState = function(targetState, interval) {
       }
 
       // no change, check again soon...
-      setTimeout(next, interval || 1000);
+      setTimeout(next, interval || 500);
     });
   }
 
