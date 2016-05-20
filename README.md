@@ -8,7 +8,7 @@ including replication persistence across CouchDB server restarts.
 
 [![NPM](https://nodei.co/npm/replimate.png)](https://nodei.co/npm/replimate/)
 
-[![Build Status](https://travis-ci.org/DamonOehlman/replimate.png?branch=master)](https://travis-ci.org/DamonOehlman/replimate)
+[![Build Status](https://api.travis-ci.org/DamonOehlman/replimate.svg?branch=master)](https://travis-ci.org/DamonOehlman/replimate) 
 
 ## Example Usage
 
@@ -145,7 +145,7 @@ database operates, see the [CouchDB wiki](http://wiki.apache.org/couchdb/Replica
 
 ### MIT
 
-Copyright (c) 2013 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2016 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
