@@ -8,7 +8,7 @@ including replication persistence across CouchDB server restarts.
 
 [![NPM](https://nodei.co/npm/replimate.png)](https://nodei.co/npm/replimate/)
 
-[![Build Status](https://api.travis-ci.org/DamonOehlman/replimate.svg?branch=master)](https://travis-ci.org/DamonOehlman/replimate) 
+[![Build Status](https://api.travis-ci.org/DamonOehlman/replimate.svg?branch=master)](https://travis-ci.org/DamonOehlman/replimate) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/replimate/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/replimate) 
 
 ## Example Usage
 
