@@ -8,15 +8,15 @@
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "version": "0.5.3",
   "dependencies": {
-    "async": "0.2.x",
-    "debug": "*",
-    "request": "~2.27.0",
-    "cog": "~0.3.1"
+    "async": "^1.5.2",
+    "cog": "^1.1.0",
+    "debug": "^2.2.0",
+    "request": "^2.72.0"
   },
   "devDependencies": {
-    "mocha": "~1.13.0",
-    "nano": "4.1.x",
-    "out": "~0.5.1"
+    "mocha": "^2.4.5",
+    "nano": "^6.2.0",
+    "out": "^1.0.0"
   },
   "repository": {
     "type": "git",
